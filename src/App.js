@@ -62,10 +62,11 @@ const App = () => {
     <Suspense fallback={null}>
       {/* <Routes>
         <Route path="/about">
-          <Route path="/about" element={<about />}/>
+        <Route path="/about" element={<about />}/>
         </Route>
       </Routes> */}
       <Canvas shadows>
+        <p>Hello World</p>
         <Vexoid />
       </Canvas>
     </Suspense>
