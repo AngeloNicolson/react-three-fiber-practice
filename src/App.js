@@ -1,13 +1,11 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import "./style.css";
 import Ground from "./components/ground.js";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 // import { Routes, Route } from "react-router-dom";
-// import Wolf from "./components/wolf.js";
-// import Tower from "./components/tower.js";
-// import Moon from "./components/moon.js";
 import Crystal from "./components/crystal.js";
+import Overlay from "./components/overlay.js";
 
 let newTarget = [0, 0.35, 0];
 
@@ -20,10 +18,14 @@ const Vexoid = () => {
         enablePan={true}
         PanSpeed={0.5}
       />
-      <PerspectiveCamera makeDefault fov={40} position={[0, 70, 5]} />
+      <PerspectiveCamera
+        makeDefault
+        fov={40}
+        position={[0, 70, 5]}
+        rotation={[90, 0, 90]}
+      />
       <color args={[0, 0, 0]} attach="background" />
-      {/* <Tower />
-      <Moon /> */}
+
       <Crystal />
       <pointLight
         position={[-30, 70, 100]}
@@ -59,17 +61,22 @@ const Vexoid = () => {
 
 const App = () => {
   return (
-    <Suspense fallback={null}>
-      {/* <Routes>
+    <>
+      <div>
+        <p>Hello</p>
+        <Overlay />
+      </div>
+      <Canvas shadows>
+        <Suspense fallback={null}>
+          {/* <Routes>
         <Route path="/about">
         <Route path="/about" element={<about />}/>
         </Route>
       </Routes> */}
-      <Canvas shadows>
-        <p>Hello World</p>
-        <Vexoid />
+          <Vexoid />
+        </Suspense>
       </Canvas>
-    </Suspense>
+    </>
   );
 };
 
