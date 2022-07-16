@@ -2,12 +2,16 @@ import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import "./style.css";
 import Ground from "./components/ground.js";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-// import { Routes, Route } from "react-router-dom";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  Text,
+  Html,
+} from "@react-three/drei";
 import Crystal from "./components/crystal.js";
 import Overlay from "./components/overlay.js";
-
-let newTarget = [0, 0.35, 0];
+import Moon from "./components/moon.js";
+let newTarget = [0, 20, 0];
 
 const Vexoid = () => {
   return (
@@ -21,8 +25,8 @@ const Vexoid = () => {
       <PerspectiveCamera
         makeDefault
         fov={40}
-        position={[0, 70, 5]}
-        rotation={[90, 0, 90]}
+        position={[-2, 0.5, 137]}
+        rotation={[0.2, -0.1, 0]}
       />
       <color args={[0, 0, 0]} attach="background" />
 
@@ -63,16 +67,24 @@ const App = () => {
   return (
     <>
       <div>
-        <p>Hello</p>
+        <p className="header">Div Angelo</p>
         <Overlay />
       </div>
       <Canvas shadows>
+        <Text
+          scale={[10, 10, 10]}
+          color="white" // default
+          anchorX="center" // default
+          anchorY="middle" // default
+        >
+          Text Angelo
+        </Text>
+        <Html className="LandingPageText" transform={(20, 50, 0)}>
+          Html Angelo
+        </Html>
         <Suspense fallback={null}>
-          {/* <Routes>
-        <Route path="/about">
-        <Route path="/about" element={<about />}/>
-        </Route>
-      </Routes> */}
+          <Moon />
+          <axesHelper scale={40} />
           <Vexoid />
         </Suspense>
       </Canvas>
